@@ -44,12 +44,6 @@ tool__bar.appendChild(select1)
 const conteiner0= document.createElement("main");
 conteiner0.className="main__box";
 anchorElement.appendChild(conteiner0);
-btn1.addEventListener("click",()=>{
-    conteiner0.appendChild("sectionA");
-});
-btn2.addEventListener("click",()=>{
-    conteiner0.appendChild("sectionB");
-});
 
 ///GRID---conteiner----
 const sectionA = document.createElement("section");
@@ -65,7 +59,17 @@ sectionC.className="section__C";
 
 
 
+btn1.addEventListener("click", () => {
+    conteiner0.innerHTML = "";
+    conteiner0.appendChild(sectionA);
+  });
+  
 
+btn2.addEventListener("click", () => {
+    conteiner0.innerHTML = "";
+    conteiner0.appendChild(sectionB);
+  });
+  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////  TODO---->:    ////ALGO COMO LO DE ABAJO
 /*
