@@ -8,7 +8,7 @@ const anchorElement = document.querySelector('#app');
 anchorElement.textContent= "HELLO WORLD";
 
 const navBar = document.createElement("nav");///creando nav
-navBar.className= ".movie-toolbar-wrapper";
+navBar.className= ".app__nav";
 anchorElement.appendChild(navBar);///pintando nav
 ///////  TODO---->:    ////ALGO COMO LO DE ABAJO
 /*
