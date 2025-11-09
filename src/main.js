@@ -1,3 +1,4 @@
+import{apiConfig}from"./api/apiConfig.js"
 import './scss/style.scss'
 import './api/apiFetch.js'
 
@@ -5,45 +6,49 @@ import './api/apiFetch.js'
 //        WORK    ZONE
 //-------------------------------------------------------------------------------
 const anchorElement = document.querySelector('#app');
-////--CHECK FILE INSIDE DOCUMENT--anchorElement.textContent= "HELLO WORLD";
-///--------------TOOL__BAR---SECTION------------------------------------
-const tool__bar = document.createElement("nav");///creando nav
-tool__bar.className= "movie-toolbar-wrapper";
-tool__bar.textContent= "navBAR"
-anchorElement.appendChild(tool__bar);///pintando nav
-///////---------BTN---SECTION-----------------------------------------------
+///--------------HEADER---SECTION------------------------------------
+const header = document.createElement("header");
+header.className= "movie-toolbar-wrapper";
+anchorElement.appendChild(header);
+
 const btn1= document.createElement("img");
 btn1.setAttribute("src","../public/grid-layout.svg");
 const btn2= document.createElement("img");
 btn2.setAttribute("src","../public/list-layout.svg");
 btn1.className="tool__btn";
 btn2.className="tool__btn";
-tool__bar.appendChild(btn1);
-tool__bar.appendChild(btn2);
-////----------------BTN----SECTION-------------------------------------------
-////---------------SELECT----SECTION--------------------------------------
+
+header.appendChild(btn1);
+header.appendChild(btn2);
+
 const select1= document.createElement("select");
+select1.className="selector"
 const option1= document.createElement("option");
 option1.textContent="Popular";
+option1.value = "popular";
 const option2= document.createElement("option");
 option2.textContent="Up coming";
+option2.value = "upcoming";
 const option3= document.createElement("option");
 option3.textContent="Now playing";
+option3.value = "now_playing"
 const option4= document.createElement("option");
 option4.textContent="Best rated";
+option4.value = "top_rated";
 
-select1.className="selector";
+
 select1.appendChild(option1);
 select1.appendChild(option2);
 select1.appendChild(option3);
 select1.appendChild(option4);
 
-tool__bar.appendChild(select1)
-///--------------TOOL__BAR---SECTION------------------------------------
+header.appendChild(select1)
+
 ////-----------CONTEINER-----SECTION-----------------------------------
-const conteiner0= document.createElement("main");
-conteiner0.className="main__box";
-anchorElement.appendChild(conteiner0);
+
+const conteinerElement= document.createElement("main");
+conteinerElement.className="main__box";
+anchorElement.appendChild(conteinerElement);
 
 ///GRID---conteiner----
 const sectionA = document.createElement("section");
@@ -54,46 +59,101 @@ sectionB.className="section__B";
 ////DETAILS----conteiner-------
 const sectionC = document.createElement("section");
 sectionC.className="section__C";
-////-----------CONTEINER-----SECTION-----------------------------------
 
 
 
-
+////---------EVENTOS-------------------------------
 btn1.addEventListener("click", () => {
-    conteiner0.innerHTML = "";
-    conteiner0.appendChild(sectionA);
+    conteinerElement.innerHTML = "";
+    conteinerElement.appendChild(sectionA);
   });
   
 
 btn2.addEventListener("click", () => {
-    conteiner0.innerHTML = "";
-    conteiner0.appendChild(sectionB);
+    conteinerElement.innerHTML = "";
+    conteinerElement.appendChild(sectionB);
   });
   
+  
+select1.addEventListener("change", event =>{
+    if(event.target.value===""){
+        return;
+    }else {
+        getData(conteinerElement,event.target.value);
+    }
+})
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////  TODO---->:    ////ALGO COMO LO DE ABAJO
-/*
-<div ID="APP">/////-----------------------------------------------------0
-//---------------------------------------------------------------------------------------
-    <nav class=".app__nav">///------------------------------------------1
-    //-----------------------------------------------------------------------------------
-        <button id="btn__card">Crear card</button>///-------------------2
-        <button id="btn__reset">Reset</button>//------------------------2
-        <select name="select" id="select__movie">//---------------------2
-        //-------------------------------------------------------------------------------
-            <option value="">choose a option</option>//-----------------3
-            <option value="popular">Popular</option>//------------------3
-            <option value="upcoming">up coming</option>//---------------3
-            <option value="now_playing">now playing</option>//----------3
-            <option value="top_rated">best rated</option>//-------------3
-            //---------------------------------------------------------------------------
-        </select>//-----------------------------------------------------2
-        //-------------------------------------------------------------------------------
-    </nav class=".app__nav">//------------------------------------------1
-///////------------------------------------------------------------------------------------
-<div ID="app__A">//-----------------------------------------------------1
-</div ID="app__A">//----------------------------------------------------1
-//-----------------------------------------------------------------------------------------
-</div ID="APP">//-------------------------------------------------------0
-//-----------------------------------------------------------------------------------------
-*/
+//------------------------------------
+//          FETCH------SELECT  
+//-------------------------------//-------
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// fetch-------------------------->
+export async function getData(dondeVa, categoria="popular")
+ {
+    try {//////try catch
+        const res = await fetch(
+            `${apiConfig.baseURL}${categoria}?api_key=${apiConfig.ApiKey}&language=es-ES&page=1`);
+        if (!res.ok) {
+            throw new Error("No se pudo obtener data"+ res.status);
+
+        }        const data = await res.json(); 
+        return mostrarContenido(data, dondeVa);///AHORA LA DATA LLAMA A LA FUNCION MOSTRAR CONTENIDO
+
+        ////////////
+    } catch (error) {
+        console.error("Error en la petición:", error.message);
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////TODO TODO TODO TODO 
+////funcion crear carta 
+export function mostrarContenido(movies, dondeVa){
+
+    if(!movies || movies.length === 0){
+        dondeVa.textContent= "no hay nada que mostrar";
+        return;
+    }else{
+        dondeVa.innerHTML="";
+    }
+        movies.results.forEach(movie => {///////SUPER IMPORTANTE EL PUTO RESULTS
+            const cardData= crearCarta(movie);
+            dondeVa.appendChild(cardData);
+            
+        });
+    }
+    
+    
+    ///funcion para crear los cards
+    
+    /////////////////////////////////////////////////////////////////////////////
+    export function crearCarta(movie){
+        const cardElement = document.createElement("div");
+        cardElement.className= "main__card";
+    
+    
+    const cardImg= document.createElement("div");
+    cardImg.className= "card__img";
+    
+    
+    
+    const cardTitle= document.createElement("h2");
+    cardTitle.textContent= movie.title;//AQUI IRIA EL VALOR DEL FOReACH.TITLE
+    
+    const cardDetails= document.createElement("p");
+    cardDetails.className="card__details";
+    cardDetails.textContent=movie.overview;
+    
+    cardElement.appendChild(cardImg);
+    cardElement.appendChild(cardTitle);
+    cardElement.appendChild(cardDetails);
+    
+    return cardElement;
+    }
+//fetch------------------------------------------------->
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
