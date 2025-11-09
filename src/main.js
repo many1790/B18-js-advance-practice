@@ -47,7 +47,9 @@ header.appendChild(select1)
 ////-----------CONTEINER-----SECTION-----------------------------------
 
 const conteinerElement= document.createElement("main");
-conteinerElement.className="main__box";
+conteinerElement.id="main__box";
+//conteinerElement.classname="movie__grid";
+//conteinerElement.className="movie__list"
 anchorElement.appendChild(conteinerElement);
 
 ///GRID---conteiner----
@@ -79,7 +81,7 @@ select1.addEventListener("change", event =>{
     if(event.target.value===""){
         return;
     }else {
-        getData(conteinerElement,event.target.value);
+        getData(sectionA,event.target.value);
     }
 })
 
@@ -138,15 +140,17 @@ export function mostrarContenido(movies, dondeVa){
     
     
     const cardImg= document.createElement("div");
-    cardImg.className= "card__img";
-    
+    cardImg.className= "movie-poster";
+    cardImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    cardImg.alt = movie.title;
     
     
     const cardTitle= document.createElement("h2");
+    cardTitle.className="movie-title"
     cardTitle.textContent= movie.title;//AQUI IRIA EL VALOR DEL FOReACH.TITLE
     
     const cardDetails= document.createElement("p");
-    cardDetails.className="card__details";
+    cardDetails.className="movie-overview";
     cardDetails.textContent=movie.overview;
     
     cardElement.appendChild(cardImg);
