@@ -12,10 +12,10 @@ tool__bar.className= "movie-toolbar-wrapper";
 tool__bar.textContent= "navBAR"
 anchorElement.appendChild(tool__bar);///pintando nav
 ///////---------BTN---SECTION-----------------------------------------------
-const btn1= document.createElement("button");
-btn1.textContent="grid";
-const btn2= document.createElement("button");
-btn2.textContent="list";
+const btn1= document.createElement("img");
+btn1.setAttribute("src","../public/grid-layout.svg");
+const btn2= document.createElement("img");
+btn2.setAttribute("src","../public/list-layout.svg");
 btn1.className="tool__btn";
 btn2.className="tool__btn";
 tool__bar.appendChild(btn1);
@@ -41,15 +41,25 @@ select1.appendChild(option4);
 tool__bar.appendChild(select1)
 ///--------------TOOL__BAR---SECTION------------------------------------
 ////-----------CONTEINER-----SECTION-----------------------------------
+const conteiner0= document.createElement("main");
+conteiner0.className="main__box";
+anchorElement.appendChild(conteiner0);
+btn1.addEventListener("click",()=>{
+    conteiner0.appendChild("sectionA");
+});
+btn2.addEventListener("click",()=>{
+    conteiner0.appendChild("sectionB");
+});
+
 ///GRID---conteiner----
-const conteinerA = document.createElement("main");
-conteinerA.className="conteiner__A";
+const sectionA = document.createElement("section");
+sectionA.className="section__A";
 ////LIST----conteiner-----
-const conteinerB = document.createElement("main");
-conteinerB.className="conteiner__B";
+const sectionB = document.createElement("section");
+sectionB.className="section__B";
 ////DETAILS----conteiner-------
-const conteinerC = document.createElement("main");
-conteinerC.className="conteiner__C";
+const sectionC = document.createElement("section");
+sectionC.className="section__C";
 ////-----------CONTEINER-----SECTION-----------------------------------
 
 
