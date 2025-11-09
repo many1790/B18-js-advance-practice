@@ -1,6 +1,6 @@
 import {apiConfig} from './apiConfig.js';
 
-/*
+
 
 //------------------------------------
 //          FETCH    SELECT  
@@ -12,15 +12,15 @@ import {apiConfig} from './apiConfig.js';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //select--------------------------->
-export const selector= document.querySelector("#select__movie");
+export const selector= document.querySelector(".selector");
 selector.addEventListener("change", event =>{
     if(event.target.value===""){
         return;
     }else {
-        getData(divDinamic¿esto seria el anchorElement#app? ,event.target.valuevalue del select!)
+        //getData(conteiner__A/*esto seria el app? o el conteiner__A?*/ ,event.target.value)
     }
 })
-
+/*
 ///select--------------------------->
 /////////////////////////////////////////////////////////////////////////////////////////////
 // fetch-------------------------->
