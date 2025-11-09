@@ -1,4 +1,9 @@
 import './scss/style.scss'
 
-document.querySelector('#app').innerHTML = `
-`
+
+//-------------------------------------------------------------------------------
+//        WORK    ZONE
+//-------------------------------------------------------------------------------
+const anchorElement = document.querySelector('#app');
+anchorElement.textContent= "HELLO WORLD";
+
