@@ -41,6 +41,15 @@ select1.appendChild(option4);
 tool__bar.appendChild(select1)
 ///--------------TOOL__BAR---SECTION------------------------------------
 ////-----------CONTEINER-----SECTION-----------------------------------
+///GRID---conteiner----
+const conteinerA = document.createElement("main");
+conteinerA.className="conteiner__A";
+////LIST----conteiner-----
+const conteinerB = document.createElement("main");
+conteinerB.className="conteiner__B";
+////DETAILS----conteiner-------
+const conteinerC = document.createElement("main");
+conteinerC.className="conteiner__C";
 ////-----------CONTEINER-----SECTION-----------------------------------
 
 
