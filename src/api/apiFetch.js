@@ -7,20 +7,20 @@ import {apiConfig} from './apiConfig.js';
 //-------------------------------//-------
 
 //         TODO--->: CONFIG TO #APP__
-
+/*
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //select--------------------------->
-export const selector= document.querySelector(".selector");
+export const selector= document.querySelector("selector");
 selector.addEventListener("change", event =>{
     if(event.target.value===""){
         return;
     }else {
-        //getData(conteiner__A/*esto seria el app? o el conteiner__A?*/ ,event.target.value)
+        //getData(conteiner__A ,event.target.value)
     }
 })
-/*
+
 ///select--------------------------->
 /////////////////////////////////////////////////////////////////////////////////////////////
 // fetch-------------------------->
