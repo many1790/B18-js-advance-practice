@@ -1,21 +1,29 @@
+import {apiConfig} from './apiConfig.js';
+
+
+
 //------------------------------------
 //          FETCH    SELECT  
 //-------------------------------//-------
 
 //         TODO--->: CONFIG TO #APP__
-///AQUI ESTA EL FETCH A TMDB PARA TRAER PELICULAS EN ESTE CASO POPULARES (SIN TARJETAS NI DIVS NI POLLAS)
 
-/////fetch en una funcion para exportar
-export const div= document.querySelector("#divpaP")
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//select--------------------------->
 export const selector= document.querySelector("#select__movie");
 selector.addEventListener("change", event =>{
     if(event.target.value===""){
         return;
     }else {
-        getData(divDinamic,event.target.value)
+        getData(divDinamic/*¿esto seria el anchorElement#app?*/ ,event.target.value/*value del select!*/)
     }
 })
 
+///select--------------------------->
+/////////////////////////////////////////////////////////////////////////////////////////////
+// fetch-------------------------->
 export async function getData(dondeVa, categoria="popular")
  {
     try {//////try catch
@@ -37,4 +45,6 @@ export async function getData(dondeVa, categoria="popular")
         console.error("Error en la petición:", error.message);
     }
 }
+
+//fetch------------------------------------------------->
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
