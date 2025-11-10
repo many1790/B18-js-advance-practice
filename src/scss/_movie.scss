@@ -58,12 +58,13 @@
   }
 }
 .main__card{
+  width: 300px;
   display: flex;
   flex-direction: column;
   padding: 5px;
-  color: #eee;
-  height: 400px;
-  border: 2px solid #fff;
+  color: #242424;
+  height: auto;
+  border: 2px solid #000;
 }
 .movie-poster{
   height: 200px;
@@ -77,6 +78,10 @@
 
 }
 .movie-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:10px;
+  padding: 10px;
   @extend .col-lg-3;
   @extend .col-md-4;
   @extend .col-sm-6;
@@ -89,7 +94,21 @@
     -webkit-line-clamp: 4;
   }
 }
-
+.movie__list{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .main__card{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .movie__poster{
+      height: 100px;
+      width: 100px;
+      background-color: red;
+    }
+  }
+}
 .movie-list {
   @extend .my-2;
 

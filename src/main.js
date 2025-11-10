@@ -25,15 +25,16 @@ const select1= document.createElement("select");
 select1.className="selector"
 const option1= document.createElement("option");
 option1.textContent="Popular";
-option1.value = "popular";
 const option2= document.createElement("option");
 option2.textContent="Up coming";
-option2.value = "upcoming";
 const option3= document.createElement("option");
 option3.textContent="Now playing";
-option3.value = "now_playing"
 const option4= document.createElement("option");
 option4.textContent="Best rated";
+
+option1.value = "popular";
+option2.value = "upcoming";
+option3.value = "now_playing";
 option4.value = "top_rated";
 
 
@@ -47,12 +48,14 @@ header.appendChild(select1)
 ////-----------CONTEINER-----SECTION-----------------------------------
 
 const conteinerElement= document.createElement("main");
-conteinerElement.id="main__box";
+conteinerElement.id="movie-list-container";
 //conteinerElement.classname="movie__grid";
 //conteinerElement.className="movie__list"
 anchorElement.appendChild(conteinerElement);
 
 ///GRID---conteiner----
+
+
 const sectionA = document.createElement("section");
 sectionA.className="section__A";
 ////LIST----conteiner-----
@@ -66,22 +69,33 @@ sectionC.className="section__C";
 
 ////---------EVENTOS-------------------------------
 btn1.addEventListener("click", () => {
-    conteinerElement.innerHTML = "";
-    conteinerElement.appendChild(sectionA);
+    conteinerElement.className = "movie-grid";
+  });
+  
+  btn2.addEventListener("click", () => {
+    conteinerElement.className = "movie__list";
   });
   
 
-btn2.addEventListener("click", () => {
-    conteinerElement.innerHTML = "";
-    conteinerElement.appendChild(sectionB);
-  });
+//btn1.addEventListener("click", () => {
+//    conteinerElement.innerHTML = "";
+ //   conteinerElement.removeAttribute("class", "movie.list");
+  //  conteinerElement.className="movie__grid";
+    //
+  //});
+  
+
+//btn2.addEventListener("click", () => {
+ //   conteinerElement.innerHTML = "";
+  //  conteinerElement.appendChild(sectionB);
+  //});
   
   
 select1.addEventListener("change", event =>{
     if(event.target.value===""){
         return;
     }else {
-        getData(sectionA,event.target.value);
+        getData(conteinerElement,event.target.value);
     }
 })
 
@@ -139,8 +153,8 @@ export function mostrarContenido(movies, dondeVa){
         cardElement.className= "main__card";
     
     
-    const cardImg= document.createElement("div");
-    cardImg.className= "movie-poster";
+    const cardImg= document.createElement("img");
+    cardImg.className= "movie__poster";
     cardImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     cardImg.alt = movie.title;
     
