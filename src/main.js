@@ -49,22 +49,9 @@ header.appendChild(select1)
 
 const conteinerElement= document.createElement("main");
 conteinerElement.id="movie-list-container";
-//conteinerElement.classname="movie__grid";
+conteinerElement.className="movie-grid";
 //conteinerElement.className="movie__list"
 anchorElement.appendChild(conteinerElement);
-
-///GRID---conteiner----
-
-
-const sectionA = document.createElement("section");
-sectionA.className="section__A";
-////LIST----conteiner-----
-const sectionB = document.createElement("section");
-sectionB.className="section__B";
-////DETAILS----conteiner-------
-const sectionC = document.createElement("section");
-sectionC.className="section__C";
-
 
 
 ////---------EVENTOS-------------------------------
@@ -75,22 +62,7 @@ btn1.addEventListener("click", () => {
   btn2.addEventListener("click", () => {
     conteinerElement.className = "movie__list";
   });
-  
-
-//btn1.addEventListener("click", () => {
-//    conteinerElement.innerHTML = "";
- //   conteinerElement.removeAttribute("class", "movie.list");
-  //  conteinerElement.className="movie__grid";
-    //
-  //});
-  
-
-//btn2.addEventListener("click", () => {
- //   conteinerElement.innerHTML = "";
-  //  conteinerElement.appendChild(sectionB);
-  //});
-  
-  
+    
 select1.addEventListener("change", event =>{
     if(event.target.value===""){
         return;
@@ -120,15 +92,16 @@ export async function getData(dondeVa, categoria="popular")
 
         }        const data = await res.json(); 
         return mostrarContenido(data, dondeVa);///AHORA LA DATA LLAMA A LA FUNCION MOSTRAR CONTENIDO
-
-        ////////////
-    } catch (error) {
+                    //console.log(data);
+                } catch (error) {
         console.error("Error en la petición:", error.message);
     }
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////TODO TODO TODO TODO 
-////funcion crear carta 
+getData(conteinerElement);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//----------------------------------------------------------------------------------
+////funcion mostrar "CREARCARTA" ///-----------------------NOT--CLEAR---------------
+//-----------------------------------------------------------------------------------
 export function mostrarContenido(movies, dondeVa){
 
     if(!movies || movies.length === 0){
@@ -143,35 +116,34 @@ export function mostrarContenido(movies, dondeVa){
             
         });
     }
-    
-    
-    ///funcion para crear los cards
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------------------    
+    ///funcion para crear los cards///////--------------------ALL CLEAR-----------
+//----------------------------------------------------------------------------------
     /////////////////////////////////////////////////////////////////////////////
-    export function crearCarta(movie){
-        const cardElement = document.createElement("div");
+    export function crearCarta(movie){///funcion crear carta
+        const cardElement = document.createElement("div");/// creamos el cardElement/div".main__card"
         cardElement.className= "main__card";
     
     
-    const cardImg= document.createElement("img");
+    const cardImg= document.createElement("img");///creamos el img/"movie__poster"
     cardImg.className= "movie__poster";
-    cardImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-    cardImg.alt = movie.title;
+    cardImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;///url imagen
+    cardImg.alt = movie.title;///si no se ve
     
     
-    const cardTitle= document.createElement("h2");
+    const cardTitle= document.createElement("h2");/// creamos el title
     cardTitle.className="movie-title"
-    cardTitle.textContent= movie.title;//AQUI IRIA EL VALOR DEL FOReACH.TITLE
+    cardTitle.textContent= movie.title;
     
-    const cardDetails= document.createElement("p");
+    const cardDetails= document.createElement("p");//descripcion
     cardDetails.className="movie-overview";
     cardDetails.textContent=movie.overview;
     
     cardElement.appendChild(cardImg);
     cardElement.appendChild(cardTitle);
     cardElement.appendChild(cardDetails);
-    
-    return cardElement;
+    ///------TODO-----rating & year----------------------
+    return cardElement;////devolvemos una card con los appendChild*3
     }
-//fetch------------------------------------------------->
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
