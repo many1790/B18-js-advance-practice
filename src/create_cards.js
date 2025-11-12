@@ -1,4 +1,7 @@
-
+import{anchorElement} from "./main.js";
+import{conteinerElement} from"./main.js";
+import{conteinerDetails} from "./main.js";
+import { mostrarDetails } from "./api/apiFetch.js";
 //----------------------------------------------------------------------------------
 ////funcion mostrar "CREARCARTA" ///-----------------------NOT--CLEAR---------------
 //-----------------------------------------------------------------------------------
@@ -21,17 +24,18 @@ export function mostrarContenido(movies, dondeVa){
 //---------------------------------------------------------------------------------    
     ///funcion para crear los cards///////--------------------ALL CLEAR-----------
 //----------------------------------------------------------------------------------
-    /////////////////////////////////////////////////////////////////////////////
-    export function crearCarta(movie){///funcion crear carta
+    
+/////////////////////////////////////////////////////////////////////////////
+
+export function crearCarta(movie){///funcion crear carta
         const cardElement = document.createElement("div");/// creamos el cardElement/div".main__card"
         cardElement.className= "main__card";
-    
+        cardElement.dataset.id = movie.id;
     
     const cardImg= document.createElement("img");///creamos el img/"movie__poster"
     cardImg.className= "movie__poster";
     cardImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;///url imagen
     cardImg.alt = movie.title;///si no se ve
-    
     
     const cardTitle= document.createElement("h2");/// creamos el title
     cardTitle.className="movie-title";
@@ -56,9 +60,15 @@ export function mostrarContenido(movies, dondeVa){
     cardElement.appendChild(cardDetails);
     
     
-    ///------TODO-----rating & year----------------------
+   
 
 
+    cardImg.addEventListener("click", ()=>{
+        conteinerElement.style.display="none";
+        conteinerDetails.style.display="flex";
+        mostrarDetails(conteinerDetails, movie.id);
+    
+    })
     return cardElement;////devolvemos una card con los appendChild*3
     };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

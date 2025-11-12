@@ -1,11 +1,9 @@
 import './scss/style.scss'
 import { getData } from './api/apiFetch.js'
-import './events.js';
-import'./create_cards.js'
 //-------------------------------------------------------------------------------
 //        WORK    ZONE
 //-------------------------------------------------------------------------------
-const anchorElement = document.querySelector('#app');
+export const anchorElement = document.querySelector('#app');
 
 
 ///--------------HEADER---SECTION------------------------------------
@@ -17,12 +15,14 @@ export const btn1= document.createElement("img");
 btn1.setAttribute("src","../public/grid-layout.svg");
 export const btn2= document.createElement("img");
 btn2.setAttribute("src","../public/list-layout.svg");
+export const btn3= document.createElement("button");
 btn1.className="tool__btn";
 btn2.className="tool__btn";
+btn3.className="tool__back";
 
 header.appendChild(btn1);
 header.appendChild(btn2);
-
+header.appendChild(btn3);
 export const select1= document.createElement("select");
 select1.className="selector"
 const option1= document.createElement("option");
@@ -49,24 +49,34 @@ header.appendChild(select1)
 //////////////////////////////////////////////////////////////////////////////
 ////-----------CONTEINER-----SECTION-----------------------------------
 
-const conteinerElement= document.createElement("main");
+export const conteinerElement= document.createElement("main");
 conteinerElement.id="movie-list-container";
 conteinerElement.className="movie-grid";
 anchorElement.appendChild(conteinerElement);
+////////////////DETAILS---------------------------------------------
+
+
+
+export const conteinerDetails= document.createElement("div");
+conteinerDetails.id ="details";
+conteinerDetails.className="details__conteiner"
+
+
+anchorElement.appendChild(conteinerDetails);
+
+
+
 
 
 ////---------EVENTOS-------------------------------
-
 //---------------grid----------------------------------------
 btn1.addEventListener("click", () => {
     conteinerElement.className = "movie-grid";
   });
-  
   //----------------list--------------------------------------
   btn2.addEventListener("click", () => {
     conteinerElement.className = "movie__list";
-  });
-    
+  });  
   //----------select------------------------------------------
 select1.addEventListener("change", event =>{
     if(event.target.value===""){
@@ -76,6 +86,11 @@ select1.addEventListener("change", event =>{
     }
 })
 
+btn3.addEventListener("click",()=>{
 
-getData(conteinerElement);
+    conteinerDetails.style.display="none";
+    conteinerElement.style.display="grid";
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+getData(conteinerElement);
