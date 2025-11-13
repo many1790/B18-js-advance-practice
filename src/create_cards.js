@@ -37,27 +37,39 @@ export function crearCarta(movie){///funcion crear carta
     cardImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;///url imagen
     cardImg.alt = movie.title;///si no se ve
     
+    const cardInfo= document.createElement("div");
+    cardInfo.className="cardInfo";
+
     const cardTitle= document.createElement("h2");/// creamos el title
     cardTitle.className="movie-title";
     cardTitle.textContent= movie.title;
-    
-    const cardRating= document.createElement("q");
+    //////////////////////////////////////////////
+    const rate_year= document.createElement("div");
+    rate_year.className="div__year";
+    const cardRating= document.createElement("p");
     cardRating.className="movie__rating";
-    cardRating.textContent= movie.vote_average;
+    cardRating.textContent= `Rating: ${movie.vote_average} | ${movie.release_date.slice(0,4)}`;
 
-    const cardYear= document.createElement("q");
+    const cardYear= document.createElement("p");
     cardYear.className="movie__year";
-    cardYear.textContent=movie.release_date.slice(0,4);
-
+    
+////////////////////////////////////////////////
     const cardDetails= document.createElement("p");//descripcion
     cardDetails.className="movie-overview";
     cardDetails.textContent=movie.overview;
     
+    
+    rate_year.appendChild(cardRating);
+    rate_year.appendChild(cardYear);
+
+    cardInfo.appendChild(cardTitle);
+    cardInfo.appendChild(rate_year);
+    cardInfo.appendChild(cardDetails);
+
     cardElement.appendChild(cardImg);
-    cardElement.appendChild(cardTitle);
-    cardElement.appendChild(cardRating);
-    cardElement.appendChild(cardYear);
-    cardElement.appendChild(cardDetails);
+    cardElement.appendChild(cardInfo);
+    
+    
     
     
    

@@ -1,3 +1,4 @@
+import'./scss/auxStyle.scss'
 import './scss/style.scss'
 import { getData } from './api/apiFetch.js'
 //-------------------------------------------------------------------------------
@@ -8,7 +9,8 @@ export const anchorElement = document.querySelector('#app');
 
 ///--------------HEADER---SECTION------------------------------------
 const header = document.createElement("header");
-header.className= "movie-toolbar-wrapper";
+//header.className= "movie-toolbar-wrapper";
+header.className= "tool__bar";
 anchorElement.appendChild(header);
 
 export const btn1= document.createElement("img");

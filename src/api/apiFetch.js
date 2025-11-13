@@ -44,11 +44,11 @@ export async function mostrarDetails(conteiner, movieId) {
     //console.log(movie); // aquí puedes ver toda la info: título, sinopsis, imagenes, etc.
   
     conteiner.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">  
-    <div>
-        <h2>${movie.title}</h2>
-        <p> ${movie.vote_average},${ movie.release_date.slice(0,4)}</p>
-      <p>${movie.overview}</p>
+      <img class="imgDetails" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">  
+    <div class="infoDetails">
+        <h2 class="titleDetails" >${movie.title}</h2>
+        <p class="rateDetails">Valoracion: ${movie.vote_average} | Año: ${ movie.release_date.slice(0,4)}</p>
+      <p class="desDetails">Sinopsis: <br>${movie.overview}</p>
       </div>
       
     `;
