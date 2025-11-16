@@ -1,0 +1,107 @@
+.movie-grid,
+.movie-list,
+.movie-details {
+  .movie-poster {
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: $border-radius;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 70%;
+    }
+  }
+
+  .movie-title {
+    @extend .my-2;
+
+    font-size: $font-size-base * 1.25;
+    font-weight: $font-weight-bold;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .movie-overview {
+    margin: 6px 0 30px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 100px;
+  }
+}
+
+.movie-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:10px;
+  padding: 15px;
+  @extend .col-lg-3;
+  @extend .col-md-4;
+  @extend .col-sm-6;
+  .movie__poster{
+    height: 400px;
+    border-radius: 12px;
+    
+  }
+.movie-title{
+    height: 40px;
+    text-align: center;
+    color:#eee;
+}  
+.div__year{
+    height: 24px;
+    display: flex;
+    color: #eee;
+    justify-content: center;
+    text-align: center;
+}
+.movie-overview{
+    color: #eee;
+  }
+}
+
+
+.movie-details {
+  color: white;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+
+  .movie-poster:hover {
+    opacity: 100%;
+    cursor: default;
+  }
+
+  .movie-backdrop-overlay {
+    @extend .py-5;
+    background-color: rgba(0, 0, 0, 0.7);
+    filter: none;
+  }
+
+  .movie-title {
+    font-size: 2.5rem;
+  }
+
+  .movie-overview {
+    font-size: 1.3rem;
+
+    &-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+
+  .movie-data {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+#search-movie-input {
+  border: none;
+}
