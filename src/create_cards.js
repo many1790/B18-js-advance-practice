@@ -1,7 +1,9 @@
-import{anchorElement} from "./main.js";
 import{conteinerElement} from"./main.js";
 import{conteinerDetails} from "./main.js";
-import { mostrarDetails } from "./api/apiFetch.js";
+import { getID } from "./api/apiFetch.js";
+import { btn1 } from "./main.js";
+import { btn2 } from "./main.js";
+import { btn3 } from "./main.js";
 //----------------------------------------------------------------------------------
 ////funcion mostrar "CREARCARTA" ///-----------------------NOT--CLEAR---------------
 //-----------------------------------------------------------------------------------
@@ -21,6 +23,27 @@ export function mostrarContenido(movies, dondeVa){
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    export async function mostrarDetails(conteiner, movieId) {
+        const movie = await getID(movieId);
+        //console.log(movie); // aquí puedes ver toda la info: título, sinopsis, imagenes, etc.
+      
+        conteiner.innerHTML = `
+          <img class="imgDetails" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">  
+        <div class="infoDetails">
+            <h2 class="titleDetails" >${movie.title}</h2>
+            <p class="rateDetails">Valoracion: ${movie.vote_average} | Año: ${ movie.release_date.slice(0,4)}</p>
+          <p class="desDetails">Sinopsis: <br>${movie.overview}</p>
+          </div>
+          
+        `;
+        conteiner.style.setProperty(
+            "--bg-img",
+            `url("https://image.tmdb.org/t/p/w500${movie.poster_path}")`
+          );
+    }
+
+
 //---------------------------------------------------------------------------------    
     ///funcion para crear los cards///////--------------------ALL CLEAR-----------
 //----------------------------------------------------------------------------------
@@ -78,6 +101,9 @@ export function crearCarta(movie){///funcion crear carta
     cardImg.addEventListener("click", ()=>{
         conteinerElement.style.display="none";
         conteinerDetails.style.display="flex";
+        btn3.style.display="block";
+        btn1.style.display="none";
+        btn2.style.display="none";
         mostrarDetails(conteinerDetails, movie.id);
     
     })
